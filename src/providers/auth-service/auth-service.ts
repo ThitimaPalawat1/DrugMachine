@@ -31,7 +31,7 @@ isLogin = false;
 	})
 			.subscribe(res=>{
 				resolve(res);
-			}, err=> {reject(err);}
+			}, err=> {resolve(err);}
 			)
 		});
   }

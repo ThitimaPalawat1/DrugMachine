@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OrPage } from '../or/or';
-import { TestdbPage } from '../testdb/testdb';
+import { DrugDataProvider } from '../../providers/drug-data/drug-data';
 
 /**
  * Generated class for the MainpagePage page.
@@ -18,16 +18,24 @@ import { TestdbPage } from '../testdb/testdb';
 export class MainpagePage {
 
 orPage  = OrPage;
-testdbPage = TestdbPage
+machineData:any;
 
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public drugDataProvider : DrugDataProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainpagePage');
-    
+  	this.drugDataProvider.getMachine()
+  	.then( (data:any) => {
+      this.machineData = data;
+      console.log(data)
+      });
+  }
+
+  chooseMachine(machineID){
+  	this.drugDataProvider.chooseMachine(machineID);
+  	this.navCtrl.push(this.orPage);
   }
 
 }

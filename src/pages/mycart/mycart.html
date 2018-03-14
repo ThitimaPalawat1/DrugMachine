@@ -55,7 +55,7 @@
 		</ion-col>
 		<ion-col class="right">
 			<ion-col offset-9>
-				<ion-icon name="trash" class="trash"></ion-icon>
+			<ion-icon name="trash" class="trash" (click)="remove(group.item.id_tray)"></ion-icon>
 			</ion-col>
 			<h2>{{group.item.name}}</h2>
 			<h3>Amount : {{group.amount}} </h3>

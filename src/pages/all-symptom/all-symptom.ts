@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DrugDataProvider } from '../../providers/drug-data/drug-data';
 
 /**
- * Generated class for the PaymentPage page.
+ * Generated class for the AllSymptomPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,31 +11,18 @@ import { DrugDataProvider } from '../../providers/drug-data/drug-data';
 
 @IonicPage()
 @Component({
-  selector: 'page-payment',
-  templateUrl: 'payment.html',
+  selector: 'page-all-symptom',
+  templateUrl: 'all-symptom.html',
 })
-export class PaymentPage {
-OTP:any;
-paymentData:any;
+export class AllSymptomPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public drugDataProvider : DrugDataProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PaymentPage');
-    this.getOTP();
-  }
+    //console.log('ionViewDidLoad AllSymptomPage');
+	//this.drugDataProvider.getSymptom();
 
-
-  getOTP(){
-    this.drugDataProvider.getOTP()
-    .then( res=>{
-      this.paymentData = res;
-      this.OTP = this.paymentData.otp;
-      }, err=> {
-        console.log("err",err);
-        }
-      );
   }
 
 }

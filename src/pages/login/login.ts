@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams  } from 'ionic-angular';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
 import { Events } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-
+import { MainpagePage } from '../mainpage/mainpage';
 /**
  * Generated class for the LoginPage page.
  *
@@ -18,9 +18,10 @@ import { ToastController } from 'ionic-angular';
 })
 export class LoginPage {
 
+  mainpagePage=MainpagePage;
   loading: any;
   loginData = { username:'', password:'' };
-  data: any;
+  accountData: any;
 
 
   constructor(private toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams, public auth: AuthServiceProvider,public events: Events) {
@@ -36,15 +37,19 @@ export class LoginPage {
     /*this.events.publish('user:login'); /*dev exit */
   	this.auth.login(this.loginData)
   	.then( res=>{
-  		console.log(res)
-  		}, err=> {
-  			console.log(err.status);
-  			if(err.status == 200){
-          this.presentToast();
-          this.auth.isLogin = true;
-          this.events.publish('user:login');
-  			}
-  		});
+      if ('balance' in res) {
+        console.log("log in successful data:",res,"end res")
+        this.accountData = res;
+        this.presentToast();
+        this.auth.isLogin = true;
+        this.events.publish('user:login');
+        this.navCtrl.push(this.mainpagePage)
+  		  
+      }
+      else{
+        console.log("res",res,"endres")
+        }
+      });
   }
 
   logout(){

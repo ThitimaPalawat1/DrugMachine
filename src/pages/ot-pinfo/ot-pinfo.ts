@@ -22,9 +22,18 @@ OTP:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad OtPinfoPage');
     /*Sent OTP Request here with drugProvider*/
-    this.OTP = this.drugProvider.OTP;
+    this.getOTP();
   }
 
 
+  getOTP(){
+  	this.drugProvider.getOTP()
+  	.then( res=>{
+  		console.log("res",res)
+  		}, err=> {
+  			console.log("err",err);
+  			}
+  		);
+  }
 
 }
